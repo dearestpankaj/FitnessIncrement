@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1514352C24EEFCBE001B5D7E /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */; };
 		156A991424EDA8EE0079CD04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991324EDA8EE0079CD04 /* AppDelegate.swift */; };
 		156A991624EDA8EE0079CD04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991524EDA8EE0079CD04 /* SceneDelegate.swift */; };
 		156A991824EDA8EE0079CD04 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991724EDA8EE0079CD04 /* LandingView.swift */; };
@@ -15,6 +16,12 @@
 		156A992024EDA8F50079CD04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 156A991E24EDA8F50079CD04 /* LaunchScreen.storyboard */; };
 		156A992B24EDA8F60079CD04 /* FitIncAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A992A24EDA8F60079CD04 /* FitIncAppTests.swift */; };
 		156A993624EDA8F60079CD04 /* FitIncAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A993524EDA8F60079CD04 /* FitIncAppUITests.swift */; };
+		15B362D624EEFED6000D1E75 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362D524EEFED6000D1E75 /* Color+Extension.swift */; };
+		15B362D824EFCB84000D1E75 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362D724EFCB84000D1E75 /* CreateView.swift */; };
+		15B362DA24EFCBCB000D1E75 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362D924EFCBCB000D1E75 /* DropDownView.swift */; };
+		15B362DC24F0FE58000D1E75 /* RemindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362DB24F0FE58000D1E75 /* RemindView.swift */; };
+		15B362DF24F10168000D1E75 /* CreateChallangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362DE24F10168000D1E75 /* CreateChallangeViewModel.swift */; };
+		15B362E124F101B6000D1E75 /* DropdownItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		156A991024EDA8EE0079CD04 /* FitIncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitIncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156A991324EDA8EE0079CD04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		156A991524EDA8EE0079CD04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +57,12 @@
 		156A993124EDA8F60079CD04 /* FitIncAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitIncAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		156A993524EDA8F60079CD04 /* FitIncAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitIncAppUITests.swift; sourceTree = "<group>"; };
 		156A993724EDA8F60079CD04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15B362D524EEFED6000D1E75 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		15B362D724EFCB84000D1E75 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		15B362D924EFCBCB000D1E75 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		15B362DB24F0FE58000D1E75 /* RemindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindView.swift; sourceTree = "<group>"; };
+		15B362DE24F10168000D1E75 /* CreateChallangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallangeViewModel.swift; sourceTree = "<group>"; };
+		15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownItemProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,7 @@
 		156A991224EDA8EE0079CD04 /* FitIncApp */ = {
 			isa = PBXGroup;
 			children = (
+				15B362DD24F10151000D1E75 /* ViewModels */,
 				156A991324EDA8EE0079CD04 /* AppDelegate.swift */,
 				156A991524EDA8EE0079CD04 /* SceneDelegate.swift */,
 				156A991724EDA8EE0079CD04 /* LandingView.swift */,
@@ -106,6 +121,11 @@
 				156A991E24EDA8F50079CD04 /* LaunchScreen.storyboard */,
 				156A992124EDA8F60079CD04 /* Info.plist */,
 				156A991B24EDA8F50079CD04 /* Preview Content */,
+				1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */,
+				15B362D524EEFED6000D1E75 /* Color+Extension.swift */,
+				15B362D724EFCB84000D1E75 /* CreateView.swift */,
+				15B362D924EFCBCB000D1E75 /* DropDownView.swift */,
+				15B362DB24F0FE58000D1E75 /* RemindView.swift */,
 			);
 			path = FitIncApp;
 			sourceTree = "<group>";
@@ -134,6 +154,15 @@
 				156A993724EDA8F60079CD04 /* Info.plist */,
 			);
 			path = FitIncAppUITests;
+			sourceTree = "<group>";
+		};
+		15B362DD24F10151000D1E75 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				15B362DE24F10168000D1E75 /* CreateChallangeViewModel.swift */,
+				15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +296,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B362E124F101B6000D1E75 /* DropdownItemProtocol.swift in Sources */,
+				15B362DF24F10168000D1E75 /* CreateChallangeViewModel.swift in Sources */,
 				156A991424EDA8EE0079CD04 /* AppDelegate.swift in Sources */,
+				15B362D624EEFED6000D1E75 /* Color+Extension.swift in Sources */,
 				156A991624EDA8EE0079CD04 /* SceneDelegate.swift in Sources */,
+				15B362DA24EFCBCB000D1E75 /* DropDownView.swift in Sources */,
+				1514352C24EEFCBE001B5D7E /* PrimaryButtonStyle.swift in Sources */,
+				15B362DC24F0FE58000D1E75 /* RemindView.swift in Sources */,
+				15B362D824EFCB84000D1E75 /* CreateView.swift in Sources */,
 				156A991824EDA8EE0079CD04 /* LandingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
