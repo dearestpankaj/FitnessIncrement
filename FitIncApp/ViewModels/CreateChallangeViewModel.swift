@@ -8,6 +8,46 @@ final class CreateChallengeViewModel: ObservableObject {
         .init(type: .length)
     ]
     
+    enum Action {
+        case selectOption(index: Int)
+    }
+    
+    var hasSelectedDropdown: Bool {
+        selectedDropdownIndex != nil
+    }
+    
+    var selectedDropdownIndex: Int? {
+        dropdowns.enumerated().first(where: { $0.element.isSelected })?.offset
+    }
+    
+    var displayedOptions: [DropdownOption] {
+        guard let selectedDropdpwnIndex = selectedDropdownIndex else {
+            return []
+        }
+        return dropdowns[selectedDropdpwnIndex].options
+    }
+    
+    func send(action: Action) {
+        switch action {
+        case let .selectOption(index):
+            guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+            clearSelectedOptions()
+            dropdowns[selectedDropdownIndex].options[index].isSelected = true
+            clearSelectedDropdown()
+        }
+    }
+    
+    func clearSelectedOptions() {
+        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+        dropdowns[selectedDropdownIndex].options.indices.forEach { index in
+            dropdowns[selectedDropdownIndex].options[index].isSelected = false
+        }
+    }
+    
+    func clearSelectedDropdown() {
+        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
+        dropdowns[selectedDropdownIndex].isSelected = false
+    }
 }
 
 extension CreateChallengeViewModel {
@@ -29,9 +69,9 @@ extension CreateChallengeViewModel {
             case .startAmount:
                 self.options = StartOption.allCases.map { $0.toDropdownOption }
             case .length:
-                self.options = IncreaseOption.allCases.map { $0.toDropdownOption }
-            case .increase:
                 self.options = LengthOption.allCases.map { $0.toDropdownOption }
+            case .increase:
+                self.options = IncreaseOption.allCases.map { $0.toDropdownOption }
             }
             self.type = type
         }

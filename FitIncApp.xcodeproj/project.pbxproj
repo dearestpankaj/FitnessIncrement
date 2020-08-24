@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1500ACEB24F3CC2400334D95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */; };
 		1514352C24EEFCBE001B5D7E /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */; };
 		156A991424EDA8EE0079CD04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991324EDA8EE0079CD04 /* AppDelegate.swift */; };
 		156A991624EDA8EE0079CD04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991524EDA8EE0079CD04 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		156A991024EDA8EE0079CD04 /* FitIncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitIncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156A991324EDA8EE0079CD04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		156A991224EDA8EE0079CD04 /* FitIncApp */ = {
 			isa = PBXGroup;
 			children = (
+				1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */,
 				15B362DD24F10151000D1E75 /* ViewModels */,
 				156A991324EDA8EE0079CD04 /* AppDelegate.swift */,
 				156A991524EDA8EE0079CD04 /* SceneDelegate.swift */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				156A992024EDA8F50079CD04 /* LaunchScreen.storyboard in Resources */,
+				1500ACEB24F3CC2400334D95 /* GoogleService-Info.plist in Resources */,
 				156A991D24EDA8F50079CD04 /* Preview Assets.xcassets in Resources */,
 				156A991A24EDA8F50079CD04 /* Assets.xcassets in Resources */,
 			);

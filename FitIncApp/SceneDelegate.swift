@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -28,6 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(rootView: landingView)
             self.window = window
             window.makeKeyAndVisible()
+            print("seting up firebase")
+            FirebaseApp.configure()
         }
     }
 
