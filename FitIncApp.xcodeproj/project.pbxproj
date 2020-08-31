@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1500ACEB24F3CC2400334D95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */; };
+		1500ACEE24F4303A00334D95 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500ACED24F4303A00334D95 /* UserService.swift */; };
 		1514352C24EEFCBE001B5D7E /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */; };
 		156A991424EDA8EE0079CD04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991324EDA8EE0079CD04 /* AppDelegate.swift */; };
 		156A991624EDA8EE0079CD04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A991524EDA8EE0079CD04 /* SceneDelegate.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1500ACED24F4303A00334D95 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		1514352B24EEFCBE001B5D7E /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		156A991024EDA8EE0079CD04 /* FitIncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitIncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156A991324EDA8EE0079CD04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1500ACEC24F4302000334D95 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1500ACED24F4303A00334D95 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		156A990724EDA8ED0079CD04 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +109,7 @@
 				156A992924EDA8F60079CD04 /* FitIncAppTests */,
 				156A993424EDA8F60079CD04 /* FitIncAppUITests */,
 				156A991124EDA8EE0079CD04 /* Products */,
+				2F20478D25006EF70234F138 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +126,7 @@
 		156A991224EDA8EE0079CD04 /* FitIncApp */ = {
 			isa = PBXGroup;
 			children = (
+				1500ACEC24F4302000334D95 /* Services */,
 				1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */,
 				15B362DD24F10151000D1E75 /* ViewModels */,
 				156A991324EDA8EE0079CD04 /* AppDelegate.swift */,
@@ -166,6 +178,13 @@
 				15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2F20478D25006EF70234F138 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +325,7 @@
 				15B362D624EEFED6000D1E75 /* Color+Extension.swift in Sources */,
 				156A991624EDA8EE0079CD04 /* SceneDelegate.swift in Sources */,
 				15B362DA24EFCBCB000D1E75 /* DropDownView.swift in Sources */,
+				1500ACEE24F4303A00334D95 /* UserService.swift in Sources */,
 				1514352C24EEFCBE001B5D7E /* PrimaryButtonStyle.swift in Sources */,
 				15B362DC24F0FE58000D1E75 /* RemindView.swift in Sources */,
 				15B362D824EFCB84000D1E75 /* CreateView.swift in Sources */,

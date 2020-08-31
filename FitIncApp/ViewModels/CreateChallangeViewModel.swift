@@ -1,6 +1,12 @@
 import SwiftUI
+import Combine
+
+typealias UserId = String
 
 final class CreateChallengeViewModel: ObservableObject {
+    private let userService: UserServiceProtocol
+    private var cancellables: [AnyCancellable]
+    
     @Published var dropdowns: [ChallengePartViewModel] = [
         .init(type: .exercise),
         .init(type: .startAmount),
@@ -10,6 +16,7 @@ final class CreateChallengeViewModel: ObservableObject {
     
     enum Action {
         case selectOption(index: Int)
+        case createChallenge
     }
     
     var hasSelectedDropdown: Bool {
@@ -27,6 +34,11 @@ final class CreateChallengeViewModel: ObservableObject {
         return dropdowns[selectedDropdpwnIndex].options
     }
     
+    init(userService: UserServiceProtocol = UserService()) {
+        self.userService = userService
+        self.cancellables = []
+    }
+    
     func send(action: Action) {
         switch action {
         case let .selectOption(index):
@@ -34,6 +46,17 @@ final class CreateChallengeViewModel: ObservableObject {
             clearSelectedOptions()
             dropdowns[selectedDropdownIndex].options[index].isSelected = true
             clearSelectedDropdown()
+        case .createChallenge:
+            currentUserId().sink(receiveCompletion: { completion in
+                switch completion {
+                case let .failure(error):
+                    print(error.localizedDescription)
+                case .finished:
+                    print("completed")
+                }
+            }) { (userId) in
+                print("retrieved user id \(userId)")
+            }.store(in: &cancellables)
         }
     }
     
@@ -47,6 +70,30 @@ final class CreateChallengeViewModel: ObservableObject {
     func clearSelectedDropdown() {
         guard let selectedDropdownIndex = selectedDropdownIndex else { return }
         dropdowns[selectedDropdownIndex].isSelected = false
+    }
+    
+    private func currentUserId() -> AnyPublisher<UserId, Error> {
+        print("getting user id")
+        if #available(iOS 14.0, *) {
+            return userService.currentUser().flatMap { user -> AnyPublisher<UserId, Error> in
+                if let userId = user?.uid {
+                    print("user is logged in")
+                    return Just(userId)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                } else {
+                    print("user is logged in")
+                    return self.userService
+                        .signInAnonymously()
+                        .map { $0.uid}
+                        .eraseToAnyPublisher()
+                }
+            }.eraseToAnyPublisher()
+        } else {
+            return Just("userId")
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }
 

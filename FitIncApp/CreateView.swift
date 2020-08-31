@@ -2,7 +2,6 @@ import SwiftUI
 
 struct CreateView: View {
     @ObservedObject var viewModel = CreateChallengeViewModel()
-    @State private var isActive = false
     
     var dropdownList: some View {
         ForEach(viewModel.dropdowns.indices, id: \.self) { index in
@@ -25,14 +24,14 @@ struct CreateView: View {
             VStack {
                 dropdownList
                 Spacer()
-                NavigationLink(destination: RemindView(), isActive: $isActive) {
-                    Button(action: {
-                        self.isActive = true
-                    }) {
-                        Text("Next")
-                            .font(.system(size: 24, weight: .medium))
-                    }
+                
+                Button(action: {
+                    self.viewModel.send(action: .createChallenge)
+                }) {
+                    Text("Next")
+                        .font(.system(size: 24, weight: .medium))
                 }
+                
             }
             .actionSheet(
                 isPresented: Binding<Bool>(
@@ -47,23 +46,3 @@ struct CreateView: View {
         }
     }
 }
-
-//struct CreateView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            DropDownView()
-//                .previewDevice("iPhone 11 Pro Max")
-//                .previewDisplayName("iPhone 11 Pro Max")
-//            
-//            DropDownView()
-//                .previewDevice("iPhone SE")
-//                .previewDisplayName("iPhone SE")
-//                .environment(\.colorScheme, .dark)
-//            
-//            DropDownView()
-//                .previewDevice("iPhone 11 Pro")
-//                .previewDisplayName("iPhone 11 Pro")
-//                .environment(\.colorScheme, .dark)
-//        }
-//    }
-//}
