@@ -24,6 +24,9 @@
 		15B362DC24F0FE58000D1E75 /* RemindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362DB24F0FE58000D1E75 /* RemindView.swift */; };
 		15B362DF24F10168000D1E75 /* CreateChallangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362DE24F10168000D1E75 /* CreateChallangeViewModel.swift */; };
 		15B362E124F101B6000D1E75 /* DropdownItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */; };
+		15F8AB0624FEBFFC009A82EE /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F8AB0524FEBFFC009A82EE /* Challenge.swift */; };
+		15F8AB0824FEC233009A82EE /* ChallengeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F8AB0724FEC233009A82EE /* ChallengeService.swift */; };
+		15F8AB0A24FF8A4C009A82EE /* IncrementError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F8AB0924FF8A4C009A82EE /* IncrementError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		15B362DB24F0FE58000D1E75 /* RemindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindView.swift; sourceTree = "<group>"; };
 		15B362DE24F10168000D1E75 /* CreateChallangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallangeViewModel.swift; sourceTree = "<group>"; };
 		15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownItemProtocol.swift; sourceTree = "<group>"; };
+		15F8AB0524FEBFFC009A82EE /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		15F8AB0724FEC233009A82EE /* ChallengeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeService.swift; sourceTree = "<group>"; };
+		15F8AB0924FF8A4C009A82EE /* IncrementError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1500ACED24F4303A00334D95 /* UserService.swift */,
+				15F8AB0724FEC233009A82EE /* ChallengeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 		156A991224EDA8EE0079CD04 /* FitIncApp */ = {
 			isa = PBXGroup;
 			children = (
+				15F8AB0424FEBFD7009A82EE /* Models */,
 				1500ACEC24F4302000334D95 /* Services */,
 				1500ACEA24F3CC2300334D95 /* GoogleService-Info.plist */,
 				15B362DD24F10151000D1E75 /* ViewModels */,
@@ -141,6 +149,7 @@
 				15B362D724EFCB84000D1E75 /* CreateView.swift */,
 				15B362D924EFCBCB000D1E75 /* DropDownView.swift */,
 				15B362DB24F0FE58000D1E75 /* RemindView.swift */,
+				15F8AB0924FF8A4C009A82EE /* IncrementError.swift */,
 			);
 			path = FitIncApp;
 			sourceTree = "<group>";
@@ -178,6 +187,14 @@
 				15B362E024F101B6000D1E75 /* DropdownItemProtocol.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		15F8AB0424FEBFD7009A82EE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15F8AB0524FEBFFC009A82EE /* Challenge.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2F20478D25006EF70234F138 /* Pods */ = {
@@ -319,7 +336,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15F8AB0A24FF8A4C009A82EE /* IncrementError.swift in Sources */,
 				15B362E124F101B6000D1E75 /* DropdownItemProtocol.swift in Sources */,
+				15F8AB0624FEBFFC009A82EE /* Challenge.swift in Sources */,
+				15F8AB0824FEC233009A82EE /* ChallengeService.swift in Sources */,
 				15B362DF24F10168000D1E75 /* CreateChallangeViewModel.swift in Sources */,
 				156A991424EDA8EE0079CD04 /* AppDelegate.swift in Sources */,
 				15B362D624EEFED6000D1E75 /* Color+Extension.swift in Sources */,
@@ -426,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -480,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

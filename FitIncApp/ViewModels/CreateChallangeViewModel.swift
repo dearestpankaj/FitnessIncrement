@@ -5,81 +5,66 @@ typealias UserId = String
 
 final class CreateChallengeViewModel: ObservableObject {
     private let userService: UserServiceProtocol
+    private let challengeService: ChallengeServiceProtocol
     private var cancellables: [AnyCancellable]
     
-    @Published var dropdowns: [ChallengePartViewModel] = [
-        .init(type: .exercise),
-        .init(type: .startAmount),
-        .init(type: .increase),
-        .init(type: .length)
-    ]
-    
+    @Published var exerciseDropdown = ChallengePartViewModel(type: .exercise)
+    @Published var startAmountDropdown = ChallengePartViewModel(type: .startAmount)
+    @Published var increaseDropdown = ChallengePartViewModel(type: .increase)
+    @Published var lengthDropdown = ChallengePartViewModel(type: .length)
+    @Published var error: IncrementError?
+    @Published var isLoading = false
     enum Action {
-        case selectOption(index: Int)
         case createChallenge
     }
     
-    var hasSelectedDropdown: Bool {
-        selectedDropdownIndex != nil
-    }
-    
-    var selectedDropdownIndex: Int? {
-        dropdowns.enumerated().first(where: { $0.element.isSelected })?.offset
-    }
-    
-    var displayedOptions: [DropdownOption] {
-        guard let selectedDropdpwnIndex = selectedDropdownIndex else {
-            return []
-        }
-        return dropdowns[selectedDropdpwnIndex].options
-    }
-    
-    init(userService: UserServiceProtocol = UserService()) {
+    init(
+        userService: UserServiceProtocol = UserService(),
+        challengeService: ChallengeServiceProtocol = ChallengeService()) {
         self.userService = userService
+        self.challengeService = challengeService
         self.cancellables = []
     }
     
     func send(action: Action) {
         switch action {
-        case let .selectOption(index):
-            guard let selectedDropdownIndex = selectedDropdownIndex else { return }
-            clearSelectedOptions()
-            dropdowns[selectedDropdownIndex].options[index].isSelected = true
-            clearSelectedDropdown()
         case .createChallenge:
-            currentUserId().sink(receiveCompletion: { completion in
+            isLoading = true
+            currentUserId().flatMap { userId -> AnyPublisher<Void, IncrementError> in
+                return self.createChallenge(userId: userId)
+            }.sink(receiveCompletion: { completion in
+                self.isLoading = false
                 switch completion {
                 case let .failure(error):
-                    print(error.localizedDescription)
+                    self.error = error
                 case .finished:
-                    print("completed")
+                    print("finished")
                 }
-            }) { (userId) in
-                print("retrieved user id \(userId)")
+            }) { _ in
+                print("success")
             }.store(in: &cancellables)
         }
     }
     
-    func clearSelectedOptions() {
-        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
-        dropdowns[selectedDropdownIndex].options.indices.forEach { index in
-            dropdowns[selectedDropdownIndex].options[index].isSelected = false
+    private func createChallenge(userId: UserId) -> AnyPublisher<Void, IncrementError> {
+        guard let exercise = exerciseDropdown.text,
+              let startAmount = startAmountDropdown.number,
+              let increase = increaseDropdown.number,
+              let length = lengthDropdown.number else {
+            return Fail(error: .default(description: "Parsing error")).eraseToAnyPublisher()
         }
+        let challenge = Challenge(extercise: exercise, startAmount: startAmount, increase: increase, length: length, userId: userId, startDate: Date())
+        return challengeService.create(challenge).eraseToAnyPublisher()
     }
     
-    func clearSelectedDropdown() {
-        guard let selectedDropdownIndex = selectedDropdownIndex else { return }
-        dropdowns[selectedDropdownIndex].isSelected = false
-    }
-    
-    private func currentUserId() -> AnyPublisher<UserId, Error> {
+    private func currentUserId() -> AnyPublisher<UserId, IncrementError> {
         print("getting user id")
         if #available(iOS 14.0, *) {
-            return userService.currentUser().flatMap { user -> AnyPublisher<UserId, Error> in
+            return userService.currentUser().flatMap { user -> AnyPublisher<UserId, IncrementError> in
                 if let userId = user?.uid {
                     print("user is logged in")
                     return Just(userId)
-                        .setFailureType(to: Error.self)
+                        .setFailureType(to: IncrementError.self)
                         .eraseToAnyPublisher()
                 } else {
                     print("user is logged in")
@@ -91,7 +76,7 @@ final class CreateChallengeViewModel: ObservableObject {
             }.eraseToAnyPublisher()
         } else {
             return Just("userId")
-                .setFailureType(to: Error.self)
+                .setFailureType(to: IncrementError.self)
                 .eraseToAnyPublisher()
         }
     }
@@ -99,12 +84,14 @@ final class CreateChallengeViewModel: ObservableObject {
 
 extension CreateChallengeViewModel {
     struct ChallengePartViewModel: DropdownItemProtocol {
+        var selectedOption: DropdownOption
+        
         var options: [DropdownOption]
         var headerTitle: String {
             type.rawValue
         }
         var dropdownTitle: String {
-            options.first(where: { $0.isSelected })?.formatted ?? ""
+            selectedOption.formatted
         }
         var isSelected: Bool = false
         private let type: ChallengePartType
@@ -121,6 +108,7 @@ extension CreateChallengeViewModel {
                 self.options = IncreaseOption.allCases.map { $0.toDropdownOption }
             }
             self.type = type
+            self.selectedOption = options.first!
         }
         
         enum ChallengePartType: String, CaseIterable {
@@ -136,36 +124,53 @@ extension CreateChallengeViewModel {
             case situps
             
             var toDropdownOption: DropdownOption {
-                .init(type: .text(rawValue), formatted: rawValue.capitalized,
-                      isSelected: self == .pullups)
+                .init(
+                    type: .text(rawValue),
+                    formatted: rawValue.capitalized)
             }
         }
         
         enum StartOption: Int, CaseIterable, DropdownOptionProtocol {
             case one = 1, two, three, four, five
             var toDropdownOption: DropdownOption {
-                .init(type: .number(rawValue),
-                      formatted: "\(rawValue)",
-                    isSelected: self == .one)
+                .init(
+                    type: .number(rawValue),
+                    formatted: "\(rawValue)")
             }
         }
         
         enum IncreaseOption: Int, CaseIterable, DropdownOptionProtocol {
             case one = 1, two, three, four, five
             var toDropdownOption: DropdownOption {
-                .init(type: .number(rawValue),
-                      formatted: "+\(rawValue)",
-                    isSelected: self == .one)
+                .init(
+                    type: .number(rawValue),
+                    formatted: "+\(rawValue)")
             }
         }
         
         enum LengthOption: Int, CaseIterable, DropdownOptionProtocol {
             case seven = 7, fourteen = 14, twentyOne = 21, twentyEight = 28
             var toDropdownOption: DropdownOption {
-                .init(type: .number(rawValue),
-                      formatted: "\(rawValue) days",
-                    isSelected: self == .seven)
+                .init(
+                    type: .number(rawValue),
+                    formatted: "\(rawValue) days")
             }
         }
+    }
+}
+
+extension CreateChallengeViewModel.ChallengePartViewModel {
+    var text: String? {
+        if case let .text(text) = selectedOption.type {
+            return text
+        }
+        return nil
+    }
+    
+    var number: Int? {
+        if case let .number(number) = selectedOption.type {
+            return number
+        }
+        return nil
     }
 }
